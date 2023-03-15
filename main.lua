@@ -18,9 +18,17 @@ local gameDirectory = ""
 
 
 function love.load(args)
+    for i, v in ipairs(args) do
+        print(i, v)
+    end
+
+    for i, v in ipairs(love.filesystem.getDirectoryItems("")) do
+        print(i, v)
+    end
+
     gameDirectory = args[1]
     game:load(gameDirectory)
-    print(game.scripts[1])
+    print("Running script: " .. game.scripts[1])
     game:run(game.scripts[1])
     
     mainMenuCanvas = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())

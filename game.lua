@@ -22,8 +22,10 @@ game = {
 
 function game:load(dir)
     self.directory = dir
+    print("Loading game from directory: " .. self.directory)
     -- scripts are in directory, check or like: script.lua, or (script1.lua, script2.lua, script3.lua...)
     for i, v in ipairs(love.filesystem.getDirectoryItems(self.directory)) do
+        print(v)
         if string.sub(v, -4) == ".lua" then
             -- script(1,2,3..).lua
             if string.sub(v, 1, 6) == "script" then
@@ -52,6 +54,9 @@ end
 function game:run(script) 
     local f = loadfile(script)
     setfenv(f, game)
+    -- require game:say function
+    
+
     routine = coroutine.create(f)
 
     -- begin execution of the script
